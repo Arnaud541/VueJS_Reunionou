@@ -18,7 +18,17 @@ const router = createRouter({
       path: '/inscription',
       name: 'inscription',
       component: () => import('@/views/InscriptionView.vue')
-    }
+    },
+    {
+      path: '/createEvent',
+      name: 'createEvent',
+      component: () => import('@/views/CreateEventView.vue')
+    },
+    {
+      path: '/invit',
+      name: 'invit',
+      component: () => import('@/views/InvitView.vue')
+    },
   ]
 })
 

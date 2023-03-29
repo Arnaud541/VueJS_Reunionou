@@ -1,13 +1,7 @@
 <template>
-  <div class="about">
+  <div>
     <h1>ReunioNou</h1>
-  </div>
-
-  <div>
-    <input type="button" value="Créer un évènement">
-  </div>
-
-  <div>
+    <router-link to="/createEvent" class="button">Créer un évènement</router-link><br>
     Ajouter une description
   </div>
 </template>
