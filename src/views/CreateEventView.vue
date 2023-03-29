@@ -15,25 +15,25 @@ function validationFormulaire() {
             <h1 class="title">Créer un évènement</h1>
             <form class="box" @submit.prevent="validationFormulaire">
                 <div class="field">
-                    <label class="label">Titre :</label>
+                    <label class="label">Titre</label>
                     <input class="input" type="text"><br/>
                 </div>
 
                 <div class="field">
-                    <label class="label">Description :</label>
+                    <label class="label">Description</label>
                     <input class="input" type="text"><br/>
                 </div>
 
                 <div class="field">
-                    <label class="label">Adresse :</label>
+                    <label class="label">Adresse</label>
                     <input class="input" type="text"><br/>
                 </div>
                 <div class="field">
-                    <label class="label">Ville :</label>
+                    <label class="label">Ville</label>
                     <input class="input" type="text"><br/>
                 </div>
                 <div class="field">
-                    <label class="label">Code Postal :</label>
+                    <label class="label">Code Postal</label>
                     <input class="input" type="text"><br/>
                 </div>
                 <div class="field">
