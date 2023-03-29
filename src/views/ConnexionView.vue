@@ -1,6 +1,52 @@
+<script setup>
+import {reactive} from 'vue'
+import {useRouter} from 'vue-router';
+
+const router = useRouter();
+
+let member = reactive({
+  email: '',
+  password: ''
+})
+
+function validationFormulaire() {
+  console.log("Validation formulaire");
+  router.push('/');
+}
+</script>
+
 <template>
-  <div class="about">
-    <h1>ConnexionView</h1>
+  <div class="columns">
+    <div class="column is-4 is-offset-4">
+
+      <h1 class="title">Se connecter</h1>
+
+      <form class="box" @submit.prevent="validationFormulaire">
+
+        <div class="field">
+          <label class="label">E-Mail</label>
+          <input class="input" v-model="member.email" type="email" placeholder="email@domaine.com">
+        </div>
+
+        <div class="field">
+          <label class="label">Mot de passe</label>
+          <input class="input" v-model="member.password" type="password">
+        </div>
+
+        <div class="field is-grouped">
+          <div class="control">
+            <button class="button is-primary">Se connecter</button>
+          </div>
+          <div class="control">
+            <router-link to="/" class="button">Annuler</router-link>
+          </div>
+        </div>
+      </form>
+      <router-link to="/inscription">Créer un compte</router-link>
+
+
+    </div>
   </div>
+
 </template>
 
