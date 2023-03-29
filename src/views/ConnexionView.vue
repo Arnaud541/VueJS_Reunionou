@@ -4,13 +4,13 @@ import {useRouter} from 'vue-router';
 
 const router = useRouter();
 
-let member = reactive({
+let user = reactive({
   email: '',
   password: ''
 })
 
 function validationFormulaire() {
-  console.log("Validation formulaire");
+  console.log("Validation connexion");
   router.push('/');
 }
 </script>
@@ -25,12 +25,12 @@ function validationFormulaire() {
 
         <div class="field">
           <label class="label">E-Mail</label>
-          <input class="input" v-model="member.email" type="email" placeholder="email@domaine.com">
+          <input class="input" v-model="user.email" type="email" placeholder="email@domaine.com">
         </div>
 
         <div class="field">
           <label class="label">Mot de passe</label>
-          <input class="input" v-model="member.password" type="password">
+          <input class="input" v-model="user.password" type="password">
         </div>
 
         <div class="field is-grouped">
