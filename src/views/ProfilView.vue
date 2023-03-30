@@ -6,49 +6,100 @@ const router = useRouter();
 
 <template>
     <div class="container">
-            <!-- Colonne pour l'image de profil -->
-            <div>
-                <figure class="image is-128x128 container">
-                    <img class="is-rounded" src="https://via.placeholder.com/50x50" alt="Image de profil"/>
-                </figure>
-                <label class="label has-text-centered">Arnaud Bourgoin</label>
-            </div>
+        <!-- Colonne pour l'image de profil -->
+        <div>
+            <figure class="image is-128x128 container">
+                <img class="is-rounded" src="https://via.placeholder.com/50x50" alt="Image de profil"/>
+            </figure>
+            <label class="label has-text-centered">Nom utilisateur</label>
+        </div>
 
-        <!-- Div pour les événements auxquels l'utilisateur a participé -->
+        <!-- Div pour les évènements en cours -->
         <div class="box">
-            <h3 class="title is-4">Evènement auxquels vous avez participé</h3>
+            <h3 class="title is-4">Evènements en cours</h3>
+
+            <div class="is-flex is-flex-wrap-wrap">
+                <div class="card m-4">
+                    <router-link to="/event">
+                        <div class="card-image">
+                            <figure class="image is-4by3">
+                                <img src="https://via.placeholder.com/800x600" alt="Image de l'évènement"/>
+                            </figure>
+                        </div>
+                        <div class="card-content">
+                            <div class="media">
+                                <div class="media-content">
+                                    <p class="title is-4">Titre de l'évènement</p>
+                                </div>
+                            </div>
+                            <div class="content has-text-black-bis">
+                                Description de l'évènement
+                            </div>
+                        </div>
+                    </router-link>
+                </div>
+                <div class="card m-4">
+                    <router-link to="/event">
+                        <div class="card-image">
+                            <figure class="image is-4by3">
+                                <img src="https://via.placeholder.com/800x600" alt="Image de l'évènement"/>
+                            </figure>
+                        </div>
+                        <div class="card-content">
+                            <div class="media">
+                                <div class="media-content">
+                                    <p class="title is-4">Titre de l'évènement</p>
+                                </div>
+                            </div>
+                            <div class="content has-text-black-bis">
+                                Description de l'évènement
+                            </div>
+                        </div>
+                    </router-link>
+                </div>
+
+                <div class="card m-4">
+                    <router-link to="/event">
+                        <div class="card-image">
+                            <figure class="image is-4by3">
+                                <img src="https://via.placeholder.com/800x600" alt="Image de l'évènement"/>
+                            </figure>
+                        </div>
+                        <div class="card-content">
+                            <div class="media">
+                                <div class="media-content">
+                                    <p class="title is-4">Titre de l'évènement</p>
+                                </div>
+                            </div>
+                            <div class="content has-text-black-bis">
+                                Description de l'évènement
+                            </div>
+                        </div>
+                    </router-link>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Div pour les évènements que l'utilisateur a créé -->
+        <div class="box">
+            <h3 class="title is-4">Evènements que vous avez créé</h3>
+
             <div class="is-flex is-flex-wrap-wrap">
                 <div class="card m-4">
                     <div class="card-image">
                         <figure class="image is-4by3">
-                            <img src="https://via.placeholder.com/800x600" alt="Image de l'événement"/>
+                            <img src="https://via.placeholder.com/800x600" alt="Image de l'évènement"/>
                         </figure>
                     </div>
                     <div class="card-content">
                         <div class="media">
                             <div class="media-content">
-                                <p class="title is-4">Titre de l'événement</p>
+                                <p class="title is-4">Titre de l'évènement</p>
                             </div>
                         </div>
                         <div class="content">
-                            Description de l'événement
-                        </div>
-                    </div>
-                </div>
-                <div class="card m-4">
-                    <div class="card-image">
-                        <figure class="image is-4by3">
-                            <img src="https://via.placeholder.com/800x600" alt="Image de l'événement"/>
-                        </figure>
-                    </div>
-                    <div class="card-content">
-                        <div class="media">
-                            <div class="media-content">
-                                <p class="title is-4">Titre de l'événement</p>
-                            </div>
-                        </div>
-                        <div class="content">
-                            Description de l'événement
+                            Description de l'évènement
                         </div>
                     </div>
                 </div>
@@ -56,35 +107,17 @@ const router = useRouter();
                 <div class="card m-4">
                     <div class="card-image">
                         <figure class="image is-4by3">
-                            <img src="https://via.placeholder.com/800x600" alt="Image de l'événement"/>
+                            <img src="https://via.placeholder.com/800x600" alt="Image de l'évènement"/>
                         </figure>
                     </div>
                     <div class="card-content">
                         <div class="media">
                             <div class="media-content">
-                                <p class="title is-4">Titre de l'événement</p>
+                                <p class="title is-4">Titre de l'évènement</p>
                             </div>
                         </div>
                         <div class="content">
-                            Description de l'événement
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card m-4">
-                    <div class="card-image">
-                        <figure class="image is-4by3">
-                            <img src="https://via.placeholder.com/800x600" alt="Image de l'événement"/>
-                        </figure>
-                    </div>
-                    <div class="card-content">
-                        <div class="media">
-                            <div class="media-content">
-                                <p class="title is-4">Titre de l'événement</p>
-                            </div>
-                        </div>
-                        <div class="content">
-                            Description de l'événement
+                            Description de l'évènement
                         </div>
                     </div>
                 </div>
@@ -92,41 +125,43 @@ const router = useRouter();
             </div>
         </div>
 
-        <!-- Div pour les événements que l'utilisateur a créé -->
+        <!-- Div pour les évènements auxquels l'utilisateur a participé -->
         <div class="box">
-            <h3 class="title is-4">Evènement que vous avez crée</h3>
+            <h3 class="title is-4">Evènements auxquels vous avez participé</h3>
+
             <div class="is-flex is-flex-wrap-wrap">
                 <div class="card m-4">
                     <div class="card-image">
                         <figure class="image is-4by3">
-                            <img src="https://via.placeholder.com/800x600" alt="Image de l'événement"/>
+                            <img src="https://via.placeholder.com/800x600" alt="Image de l'évènement"/>
                         </figure>
                     </div>
                     <div class="card-content">
                         <div class="media">
                             <div class="media-content">
-                                <p class="title is-4">Titre de l'événement</p>
+                                <p class="title is-4">Titre de l'évènement</p>
                             </div>
                         </div>
                         <div class="content">
-                            Description de l'événement
+                            Description de l'évènement
                         </div>
                     </div>
                 </div>
+
                 <div class="card m-4">
                     <div class="card-image">
                         <figure class="image is-4by3">
-                            <img src="https://via.placeholder.com/800x600" alt="Image de l'événement"/>
+                            <img src="https://via.placeholder.com/800x600" alt="Image de l'évènement"/>
                         </figure>
                     </div>
                     <div class="card-content">
                         <div class="media">
                             <div class="media-content">
-                                <p class="title is-4">Titre de l'événement</p>
+                                <p class="title is-4">Titre de l'évènement</p>
                             </div>
                         </div>
                         <div class="content">
-                            Description de l'événement
+                            Description de l'évènement
                         </div>
                     </div>
                 </div>

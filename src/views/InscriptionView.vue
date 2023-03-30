@@ -84,42 +84,42 @@ function validationFormulaire() {
             <form class="box" @submit.prevent="validationFormulaire">
 
                 <div class="field" :class="{ 'has-error': !checkLastname() }">
-                    <label class="label">Nom</label>
+                    <label class="label">Nom*</label>
                     <input class="input" v-model="user.lastname" type="text" placeholder="Dupont" required>
                     <p class="help is-danger" v-if="!checkLastname()">Le nom est invalide.</p>
                 </div>
 
                 <div class="field" :class="{ 'has-error': !checkFirstname() }">
-                    <label class="label">Prénom</label>
+                    <label class="label">Prénom*</label>
                     <input class="input" v-model="user.firstname" type="text" placeholder="Michel" required>
                     <p class="help is-danger" v-if="!checkFirstname()">Le prénom est invalide.</p>
                 </div>
 
                 <div class="field" :class="{ 'has-error': !checkEmail() }">
-                    <label class="label">E-Mail</label>
+                    <label class="label">E-Mail*</label>
                     <input class="input" v-model="user.email" type="email" placeholder="email@domaine.com" required>
                     <p class="help is-danger" v-if="!checkEmail()">L'email est invalide.</p>
                 </div>
 
                 <div class="field" :class="{ 'has-error': !checkPassword() }">
                     <br>
-                    <p class="p">Doit contenir :</p>
-                    <ul>
-                        <li> - 1 majuscule</li>
-                        <li> - 1 minuscule</li>
-                        <li> - 1 chiffre</li>
-                        <li> - 1 caractère spécial</li>
-                        <li> - 8 caractères minimum</li>
-                    </ul>
+                    <div class="is-size-6">
+                        <p>Doit contenir :</p>
+                        <ul>
+                            <li> - 1 majuscule et 1 minuscule</li>
+                            <li> - 1 chiffre et 1 caractère spécial</li>
+                            <li> - 8 caractères minimum</li>
+                        </ul>
+                    </div>
                     <br>
 
-                    <label class="label">Mot de passe</label>
+                    <label class="label">Mot de passe*</label>
                     <input class="input" v-model="user.password" type="password" required>
                     <p class="help is-danger" v-if="!checkPassword()">Le mot de passe est invalide.</p>
                 </div>
 
                 <div class="field" :class="{ 'has-error': !checkPassword() }">
-                    <label class="label">Confirmer mot de passe</label>
+                    <label class="label">Confirmer mot de passe*</label>
                     <input class="input" v-model="user.confirmPassword" type="password" required>
                     <p class="help is-danger" v-if="!checkPassword()">Les mots de passe ne correspondent pas.</p>
                 </div>
