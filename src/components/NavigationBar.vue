@@ -24,7 +24,7 @@ function isAuthenticated() {
   <nav class="navbar" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
       <router-link to="/" class="navbar-item">
-        <img src="/public/assets/img/map.png" alt="50">
+        <img src="/public/assets/img/map.png" alt="70">
       </router-link>
 
       <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarMenu"
@@ -40,6 +40,9 @@ function isAuthenticated() {
         <div class="navbar-item">
           <div class="buttons">
 
+            <router-link to="/profil" class="button is-primary">
+              <strong>Profil</strong>
+            </router-link>
             <router-link to="/inscription" class="button is-primary">
               <strong>Inscription</strong>
             </router-link>
