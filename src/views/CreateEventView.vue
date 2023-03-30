@@ -20,7 +20,7 @@ let errors = {
 }
 
 function checkTitle() {
-    const regExp = /^[A-Za-zÀ-ÖØ-öø-ÿ\s']+$/;
+    const regExp = /^[A-Za-zÀ-ÖØ-öø-ÿ\s'\d]+$/;
     if (!regExp.test(event.title) && event.title !== "") {
         errors.title.value = "Le titre est invalide.";
         return false;
@@ -31,7 +31,7 @@ function checkTitle() {
 }
 
 function checkDesc() {
-    const regExp = /^[A-Za-zÀ-ÖØ-öø-ÿ\s']+$/;
+    const regExp = /^[A-Za-zÀ-ÖØ-öø-ÿ\s'\d]+$/;
     if (!regExp.test(event.desc) && event.desc !== "") {
         errors.desc.value = "Le description est invalide.";
         return false;
@@ -42,7 +42,7 @@ function checkDesc() {
 }
 
 function checkStreet() {
-    const regExp = /^[A-Za-zÀ-ÖØ-öø-ÿ\s,'-]*$/;
+    const regExp = /^[A-Za-zÀ-ÖØ-öø-ÿ\s'\d]+$/;
     if (!regExp.test(event.street) && event.street !== "") {
         errors.street.value = "L'adresse est invalide.";
         return false;
