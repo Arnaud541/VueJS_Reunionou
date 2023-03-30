@@ -1,12 +1,22 @@
 <template>
-  <div class="columns">
-    <div class="column is-5 is-offset-5">
-      <br/><br/>
-      <h1 class="title">ReunioNou</h1>
-      <br/><br/>
-      <router-link to="/event" class="button is-primary">Créer un évènement</router-link><br><br/><br/>
-      Ajouter une description
+    <div class="columns">
+        <div class="column is-4 is-offset-4">
+            <h1 class="title is-2">Réunionou</h1>
+
+            <div class="box">
+                <div class="field mt-3">
+                    <label class="label">Ajouter une description</label>
+                </div>
+
+                <div class="field mt-6">
+                    <div class="control">
+                        <router-link to="/createEvent" class="button is-primary">Créer un évènement</router-link>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
 </template>
 
+<script setup>
+</script>

@@ -34,6 +34,11 @@ const router = createRouter({
       name: 'event',
       component: () => import('@/views/EventView.vue')
     },
+    {
+      path: '/profil',
+      name: 'profil',
+      component: () => import('@/views/ProfilView.vue')
+    },
   ]
 })
 
