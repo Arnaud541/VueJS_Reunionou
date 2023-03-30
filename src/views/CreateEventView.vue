@@ -135,6 +135,7 @@ function validationFormulaire() {
                 </div>
 
             </form>
+            <router-link to="/">Annuler</router-link>
         </div>
     </div>
 </template>
