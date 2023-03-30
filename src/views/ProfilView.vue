@@ -6,15 +6,13 @@ const router = useRouter();
 
 <template>
     <div class="container">
-        <div class="is-flex">
             <!-- Colonne pour l'image de profil -->
-            <div class="">
-                <figure class="image is-128x128">
+            <div>
+                <figure class="image is-128x128 container">
                     <img class="is-rounded" src="https://via.placeholder.com/50x50" alt="Image de profil"/>
                 </figure>
-                <label class="label">Arnaud Bourgoin</label>
+                <label class="label has-text-centered">Arnaud Bourgoin</label>
             </div>
-        </div>
 
         <!-- Div pour les événements auxquels l'utilisateur a participé -->
         <div class="box">
