@@ -21,7 +21,7 @@ function isAuthenticated() {
 </script>
 
 <template>
-  <nav class="navbar" role="navigation" aria-label="main navigation">
+  <nav class="navbar has-background-grey-lighter" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
       <router-link to="/" class="navbar-item">
         <img src="/public/assets/img/map.png" alt="70">
