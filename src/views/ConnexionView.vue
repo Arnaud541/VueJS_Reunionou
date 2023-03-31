@@ -53,12 +53,12 @@ function checkPassword() {
 
             <form class="box" @submit.prevent="validationFormulaire">
                 <div class="field">
-                    <label class="label">E-Mail</label>
+                    <label class="label">E-Mail*</label>
                     <input class="input" v-model="user.email" type="email" placeholder="email@domaine.com" required>
                 </div>
 
                 <div class="field">
-                    <label class="label">Mot de passe</label>
+                    <label class="label">Mot de passe*</label>
                     <input class="input" v-model="user.password" type="password" required>
                 </div>
 

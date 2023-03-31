@@ -104,7 +104,7 @@ function checkZipcode() {
 
                 <div class="field" :class="{ 'has-error': !checkTitle() }">
                     <div class="field">
-                        <label class="label">Titre</label>
+                        <label class="label">Titre*</label>
                         <input class="input" type="text" v-model="event.title" required>
                     </div>
                     <p class="help is-danger" v-if="!checkTitle()">Le titre est invalide.</p>
@@ -112,7 +112,7 @@ function checkZipcode() {
 
                 <div class="field" :class="{ 'has-error': !checkDesc() }">
                     <div class="field">
-                        <label class="label">Description</label>
+                        <label class="label">Description*</label>
                         <input class="input" type="text" v-model="event.desc" required>
                     </div>
                     <p class="help is-danger" v-if="!checkDesc()">La description est invalide.</p>
@@ -120,7 +120,7 @@ function checkZipcode() {
 
                 <div class="field" :class="{ 'has-error': !checkStreet() }">
                     <div class="field">
-                        <label class="label">Adresse</label>
+                        <label class="label">Adresse*</label>
                         <input class="input" type="text" v-model="event.street" required>
                     </div>
                     <p class="help is-danger" v-if="!checkStreet()">L'adresse est invalide.</p>
@@ -128,7 +128,7 @@ function checkZipcode() {
 
                 <div class="field" :class="{ 'has-error': !checkCity() }">
                     <div class="field">
-                        <label class="label">Ville</label>
+                        <label class="label">Ville*</label>
                         <input class="input" type="text" v-model="event.city" required>
                     </div>
                     <p class="help is-danger" v-if="!checkCity()">La ville est invalide.</p>
@@ -136,7 +136,7 @@ function checkZipcode() {
 
                 <div class="field" :class="{ 'has-error': !checkZipcode() }">
                     <div class="field">
-                        <label class="label">Code Postal</label>
+                        <label class="label">Code Postal*</label>
                         <input class="input" type="text" v-model="event.zipcode" required>
                     </div>
                     <p class="help is-danger" v-if="!checkZipcode()">Le code postal est invalide.</p>

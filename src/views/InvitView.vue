@@ -15,11 +15,13 @@ let errors = {
 let participants = [];
 
 function ajouterParticipant() {
-    console.log("Ajout participant");
-    participants.push({ email: participant.email });
-    participant.email = '';
-    console.log(participants);
-    router.push('/invit');
+    if (participants.email !== "") {
+        console.log("Ajout participant");
+        participants.push({email: participant.email});
+        participant.email = '';
+        console.log(participants);
+        router.push('/invit');
+    }
 }
 
 function checkEmail() {
