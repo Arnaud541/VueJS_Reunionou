@@ -1,8 +1,28 @@
 <script setup>
 import {reactive, ref} from 'vue'
 import {useRouter} from 'vue-router';
+import EventService from '@/services/EventService';
+
 
 const router = useRouter();
+
+async function validationFormulaire() {
+  if (checkTitle() && checkDesc() && checkStreet() && checkCity() && checkZipcode()) {
+    try {
+      const newEvent = {
+        title: event.title,
+        description: event.desc,
+        address: `${event.street}, ${event.city}, ${event.zipcode}`,
+      };
+
+      await EventService.createEvent(newEvent);
+
+      router.push('/invit');
+    } catch (error) {
+      console.error('Error creating the event:', error);
+    }
+  }
+}
 
 let event = reactive({
     title: '',
@@ -71,12 +91,6 @@ function checkZipcode() {
     } else {
         errors.zipcode.value = "";
         return true;
-    }
-}
-
-function validationFormulaire() {
-    if (checkTitle() && checkDesc() && checkStreet() && checkCity() && checkZipcode()) {
-        router.push('/invit');
     }
 }
 </script>

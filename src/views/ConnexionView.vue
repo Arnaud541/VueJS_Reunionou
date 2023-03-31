@@ -1,8 +1,28 @@
 <script setup>
 import {reactive, ref} from 'vue'
 import {useRouter} from 'vue-router';
+import UserService from '@/services/UserService';
 
 const router = useRouter();
+
+async function validationFormulaire() {
+
+
+    if (checkEmail() && checkPassword()) {
+         try {
+            const login = {
+                email: user.email,
+                password: user.password,
+            };
+
+            await UserService.login(login);
+
+            router.push('/');
+        } catch (error) {
+            console.error('Error logging in:', error);
+        }
+    }
+}
 
 let user = reactive({
     email: '',
@@ -23,14 +43,6 @@ function checkPassword() {
     return (regExp.test(user.password) && user.password !== "")
 }
 
-function validationFormulaire() {
-    if (checkEmail() && checkPassword()) {
-        errors.formulaire.value = '';
-        router.push('/');
-    } else {
-        errors.formulaire.value = "Veuillez remplir tous les champs correctement.";
-    }
-}
 </script>
 
 <template>
