@@ -38,6 +38,11 @@ const router = createRouter({
       path: '/profil',
       name: 'profil',
       component: () => import('@/views/ProfilView.vue')
+    },
+    {
+      path: '/participant-inscription',
+      name: 'participant-inscription',
+      component: () => import('@/views/ParticipantInscriptionView.vue')
     }
   ]
 })

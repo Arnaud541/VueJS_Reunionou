@@ -23,9 +23,24 @@ function isAuthenticated() {
 <template>
     <nav class="navbar has-background-info-dark" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
-            <router-link to="/" class="navbar-item">
-                <img src="/public/assets/img/map.png" alt="70">
+            <router-link to="/" class="navbar-item has-background-primary-dark">
+                <figure class="navbar-item">
+                    <img src="/public/assets/img/map.png" alt="Logo du site">
+                </figure>
             </router-link>
+
+            <div class="navbar-item mx-4 px-4">
+                <div class="title has-text-white">
+                    <div v-if="$route.path === '/'">Bienvenue</div>
+                    <div v-if="$route.path === '/connexion'">Connectez-vous</div>
+                    <div v-if="$route.path === '/inscription'">Rejoignez-nous</div>
+                    <div v-if="$route.path === '/createEvent'">Nouvel évènement ?</div>
+                    <div v-if="$route.path === '/invit'">Invitez vos amis !</div>
+                    <div v-if="$route.path === '/event'">Évènement en cours !</div>
+                    <div v-if="$route.path === '/profil'">Voici votre profil</div>
+                    <div v-if="$route.path === '/participant-inscription'">Vous-êtes nouveau ?</div>
+                </div>
+            </div>
 
             <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarMenu"
                @click="state.navbarOpen=!state.navbarOpen">
@@ -35,7 +50,7 @@ function isAuthenticated() {
             </a>
         </div>
 
-        <div class="navbar-menu " :class="{'is-active':state.navbarOpen}">
+        <div class="navbar-menu">
             <div class="navbar-end">
                 <div class="navbar-item">
                     <div class="buttons">
