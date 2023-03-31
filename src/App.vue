@@ -9,10 +9,10 @@ import FooterBar from "@/components/FooterBar.vue";
     <header>
         <Navbar/>
     </header>
-    <body class="wrapper">
+    <body>
     <RouterView/>
     </body>
-    <footer class="has-background-grey-lighter">
+    <footer>
         <FooterBar/>
     </footer>
 </template>
