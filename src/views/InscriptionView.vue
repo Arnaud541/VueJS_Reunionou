@@ -1,8 +1,22 @@
 <script setup>
 import {reactive, ref} from 'vue'
 import {useRouter} from 'vue-router';
+import UserService from '@/services/UserService';
 
 const router = useRouter();
+
+async function validationFormulaire(){
+if (checkFirstname() && checkLastname() && checkEmail() && checkPassword()) {
+     try {
+
+        await UserService.register(user);
+
+        router.push('/');
+    } catch (error) {
+        console.error('Error creating a new user:', error);
+    }
+}
+}
 
 let user = reactive({
     lastname: '',
@@ -68,11 +82,6 @@ function checkPassword() {
     }
 }
 
-function validationFormulaire() {
-    if (checkLastname() && checkFirstname() && checkEmail() && checkPassword()) {
-        router.push('/connexion');
-    }
-}
 </script>
 
 <template>

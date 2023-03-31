@@ -1,9 +1,15 @@
 import apiClient from '@/api';
 
 export default {
-  getAllEvents() {
-    return apiClient.get('/events');
-  },
+    async getAllEvents() {
+        try {
+          const response = await apiClient.get('/events');
+          return response;
+        } catch (error) {
+          console.error('Error fetching events:', error);
+          throw error;
+        }
+      },
 
   async createEvent(event) {
     try {

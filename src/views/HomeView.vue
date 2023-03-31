@@ -11,7 +11,6 @@ export default {
     try {
       const response = await EventService.getAllEvents();
       this.events = response.data.events;
-      console.log(this.events);
     } catch (error) {
       console.error(error);
     }

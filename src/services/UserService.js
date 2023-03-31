@@ -12,4 +12,14 @@ export default {
             throw error;
         }
     },
+
+    async register(user) {
+        try {
+          const response = await apiClient.post('/register', user);
+          return response.data;
+        } catch (error) {
+          console.error('Error creating a new user:', error);
+          throw error;
+        }
+      },
 };
