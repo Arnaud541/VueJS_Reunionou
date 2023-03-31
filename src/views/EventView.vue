@@ -9,7 +9,7 @@
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce faucibus dui mi, vitae sagittis erat fringilla eu. Nullam tristique tellus et nisl pulvinar faucibus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Etiam tincidunt sem quam, quis convallis justo vestibulum sit amet. Quisque blandit turpis.<br/><br/> 
                 </div>
                 <div class="columns">
-                    <div class="column box ml-5 mb-2 is-4">
+                    <div class="column box ml-5 mb-1 is-4">
                         Participants:<br/><br/>
                             <ul>
                                 <li>Participant1 Refus</li>
@@ -21,7 +21,7 @@
                             <button class="button is-primary is-fullwidth">Accepter</button><br/>
                             <button class="button is-danger is-fullwidth">Refuser</button>
                     </div>
-                    <div class="column box ml-6 mb-2 is-6">
+                    <div class="column box ml-6 mb-1 is-6">
                         Zone Commentaire<br/>
                         Zone Commentaire<br/>
                         Zone Commentaire<br/>
