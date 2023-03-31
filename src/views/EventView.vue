@@ -1,7 +1,7 @@
 <template>
-    <div class="box">
-        <div class="columns">
-            <div class="column is-6 is-offset-one-fifth">
+    <div class="column">
+        <div class="box">
+            <div class="column is-5">
                 <div class="has-text-centered title">
                     Nom de l'évènement<br/>
                 </div>
@@ -22,6 +22,11 @@
                         <button class="button is-danger">Refuser</button>
                     </div>
                 </div>
+            </div>
+            <div class="column">
+                <figure class="">
+                    <img src="/public/assets/img/téléchargement.png">
+                </figure>
             </div>
         </div>
     </div>
