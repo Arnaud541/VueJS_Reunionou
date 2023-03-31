@@ -1,16 +1,15 @@
 header {
-    background: rebeccapurple;
     margin-bottom: 2rem;
 }
 
 body {
-    background: bisque;
-    padding-bottom: 2.5rem;
+    padding-bottom: 3rem;
 }
 
 footer {
-    background: aquamarine;
+    background: rgba(255, 255, 255, 0.7);
     position: fixed;
     width: 100%;
     bottom: 0;
+    padding: 0.5rem 0;
 }

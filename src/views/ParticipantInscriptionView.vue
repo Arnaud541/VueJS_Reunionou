@@ -1,37 +1,19 @@
 <script setup>
 import {reactive, ref} from 'vue'
 import {useRouter} from 'vue-router';
-import UserService from '@/services/UserService';
 
 const router = useRouter();
-
-async function validationFormulaire(){
-if (checkFirstname() && checkLastname() && checkEmail() && checkPassword()) {
-     try {
-
-        await UserService.register(user);
-
-        router.push('/');
-    } catch (error) {
-        console.error('Error creating a new user:', error);
-    }
-}
-}
 
 let user = reactive({
     lastname: '',
     firstname: '',
     email: '',
-    password: '',
-    confirmPassword: ''
 })
 
 let errors = {
     lastname: ref(''),
     firstname: ref(''),
     email: ref(''),
-    password: ref(''),
-    confirmPassword: ref('')
 }
 
 function checkLastname() {
@@ -67,28 +49,18 @@ function checkEmail() {
     }
 }
 
-function checkPassword() {
-    const regExp = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\W)(?=.*\d)[A-Za-z\d\W]{8,}$/;
-    if (!regExp.test(user.password) && user.password !== "") {
-        errors.password.value = "Le mot de passe doit contenir au moins 8 caractères dont 1 majuscule, 1 minuscule, 1 chiffre et 1 caractère spécial.";
-        return false;
-    } else if (user.password !== user.confirmPassword) {
-        errors.confirmPassword.value = "Les mots de passe ne correspondent pas.";
-        return false;
-    } else {
-        errors.password.value = "";
-        errors.confirmPassword.value = "";
-        return true;
+function validationFormulaire() {
+    if (checkLastname() && checkFirstname() && checkEmail()) {
+        router.push('/event');
     }
 }
-
 </script>
 
 <template>
     <div class="columns">
         <div class="column is-4 is-offset-4">
 
-            <h1 class="title is-2">S'inscrire</h1>
+            <h1 class="title is-2">Rejoignez l'évènement</h1>
 
             <form class="box" @submit.prevent="validationFormulaire">
 
@@ -110,29 +82,6 @@ function checkPassword() {
                     <p class="help is-danger" v-if="!checkEmail()">L'email est invalide.</p>
                 </div>
 
-                <div class="field" :class="{ 'has-error': !checkPassword() }">
-                    <br>
-                    <div class="is-size-6">
-                        <p>Doit contenir :</p>
-                        <ul>
-                            <li> - 1 majuscule et 1 minuscule</li>
-                            <li> - 1 chiffre et 1 caractère spécial</li>
-                            <li> - 8 caractères minimum</li>
-                        </ul>
-                    </div>
-                    <br>
-
-                    <label class="label">Mot de passe*</label>
-                    <input class="input" v-model="user.password" type="password" required>
-                    <p class="help is-danger" v-if="!checkPassword()">Le mot de passe est invalide.</p>
-                </div>
-
-                <div class="field" :class="{ 'has-error': !checkPassword() }">
-                    <label class="label">Confirmer mot de passe*</label>
-                    <input class="input" v-model="user.confirmPassword" type="password" required>
-                    <p class="help is-danger" v-if="!checkPassword()">Les mots de passe ne correspondent pas.</p>
-                </div>
-
                 <div class="field is-grouped">
                     <div class="control">
                         <button class="button is-primary">Valider inscription</button>
@@ -141,8 +90,8 @@ function checkPassword() {
                     <div class="control">
                         <router-link to="/" class="button">Annuler</router-link>
                     </div>
-
                 </div>
+                
             </form>
         </div>
     </div>
