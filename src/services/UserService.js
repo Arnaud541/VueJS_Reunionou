@@ -1,6 +1,5 @@
 import apiClient from '@/api';
 
-
 export default {
     async login(login) {
         try {

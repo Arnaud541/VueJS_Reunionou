@@ -26,6 +26,7 @@ async function validationFormulaire() {
 
 let event = reactive({
     title: '',
+    date: '',
     desc: '',
     street: '',
     city: '',
@@ -33,6 +34,7 @@ let event = reactive({
 })
 let errors = {
     title: ref(''),
+    date: ref(''),
     desc: ref(''),
     street: ref(''),
     city: ref(''),
@@ -110,6 +112,14 @@ function checkZipcode() {
                     <p class="help is-danger" v-if="!checkTitle()">Le titre est invalide.</p>
                 </div>
 
+                <div class="field">
+                    <div class="field">
+                        <label class="label">Date*</label>
+                        <input class="input" type="datetime-local" v-model="event.date" required>
+                    </div>
+                    <p class="help is-danger" v-if="!checkTitle()">Le titre est invalide.</p>
+                </div>
+
                 <div class="field" :class="{ 'has-error': !checkDesc() }">
                     <div class="field">
                         <label class="label">Description*</label>
@@ -150,6 +160,9 @@ function checkZipcode() {
 
             </form>
             <router-link to="/">Annuler</router-link>
+        </div>
+        <div class="column">
+
         </div>
     </div>
 </template>
