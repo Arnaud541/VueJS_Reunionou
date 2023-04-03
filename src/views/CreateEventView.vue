@@ -9,13 +9,8 @@ const router = useRouter();
 async function validationFormulaire() {
   if (checkTitle() && checkDesc() && checkStreet() && checkCity() && checkZipcode()) {
     try {
-      const newEvent = {
-        title: event.title,
-        description: event.desc,
-        address: `${event.street}, ${event.city}, ${event.zipcode}`,
-      };
 
-      await EventService.createEvent(newEvent);
+      await EventService.createEvent(event);
 
       router.push('/invit');
     } catch (error) {
@@ -26,7 +21,7 @@ async function validationFormulaire() {
 
 let event = reactive({
     title: '',
-    desc: '',
+    description: '',
     street: '',
     city: '',
     zipcode: ''
@@ -113,7 +108,7 @@ function checkZipcode() {
                 <div class="field" :class="{ 'has-error': !checkDesc() }">
                     <div class="field">
                         <label class="label">Description*</label>
-                        <input class="input" type="text" v-model="event.desc" required>
+                        <input class="input" type="text" v-model="event.description" required>
                     </div>
                     <p class="help is-danger" v-if="!checkDesc()">La description est invalide.</p>
                 </div>
