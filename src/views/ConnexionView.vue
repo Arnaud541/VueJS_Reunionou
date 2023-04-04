@@ -11,7 +11,8 @@ async function validationFormulaire() {
     if (checkEmail() && checkPassword()) {
          try {
 
-            await UserService.login(user);
+            await UserService.loginUser(user);
+
 
             router.push('/');
         } catch (error) {
