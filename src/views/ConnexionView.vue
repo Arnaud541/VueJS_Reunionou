@@ -4,6 +4,7 @@ import {useRouter} from 'vue-router';
 import UserService from '@/services/UserService';
 
 const router = useRouter();
+const errorMessage = ref('');
 
 async function validationFormulaire() {
 
@@ -11,14 +12,19 @@ async function validationFormulaire() {
     if (checkEmail() && checkPassword()) {
          try {
 
-            await UserService.loginUser(user);
+            const currentUser = await UserService.loginUser(user);
+            console.log(currentUser);
 
-
-            router.push('/');
-        } catch (error) {
-            console.error('Error logging in:', error);
-        }
+            if (currentUser && currentUser.user.id) {
+      router.push(`/profil/${currentUser.user.id}`);
+    } else {
+        errorMessage.value = "Wrong email or password. Please try again.";
     }
+    } catch (error) {
+      console.error('Error creating the event:', error);
+      errorMessage.value = "Wrong email or password. Please try again.";
+    }
+  }
 }
 
 let user = reactive({
@@ -47,6 +53,11 @@ function checkPassword() {
         <div class="column is-4 is-offset-4">
 
             <h1 class="title is-2">Se connecter</h1>
+
+            
+            <div class="notification is-danger" v-if="errorMessage">
+                    {{ errorMessage }}
+                </div>
 
             <form class="box" @submit.prevent="validationFormulaire">
                 <div class="field">

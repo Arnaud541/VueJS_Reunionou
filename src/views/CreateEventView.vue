@@ -5,18 +5,23 @@ import EventService from '@/services/EventService';
 
 
 const router = useRouter();
+const errorMessage = ref('')
 
 async function validationFormulaire() {
   if (checkTitle() && checkDesc() && checkStreet() && checkCity() && checkZipcode()) {
     try {
 
 
-    console.log(event);    
-    await EventService.createEvent(event);
+    const createdEvent = await EventService.createEvent(event);
 
-      router.push('/invit');
+    if (createdEvent && createdEvent.id) {
+      router.push(`/invit/${createdEvent.id}`);
+    } else {
+        errorMessage.value = "Error creating the event. Please try again.";
+    }
     } catch (error) {
       console.error('Error creating the event:', error);
+      errorMessage.value = "Error creating the event. Please try again.";
     }
   }
 }
@@ -96,6 +101,10 @@ function checkZipcode() {
     <div class="columns">
         <div class="column is-4 is-offset-4">
             <h1 class="title is-2">Créer un évènement</h1>
+
+                <div class="notification is-danger" v-if="errorMessage">
+                    {{ errorMessage }}
+                </div>
 
             <form class="box" @submit.prevent="validationFormulaire">
 

@@ -17,7 +17,6 @@ export default {
       const token = response.data.token;
       localStorage.setItem('authToken', token);
       apiClient.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-      console.log(apiClient.defaults.headers.common['Authorization']);
       return response.data;
     } catch (error) {
       console.error('Error logging in the user:', error);
@@ -39,6 +38,7 @@ export default {
   async getUserEvents(userId) {
     try {
       const response = await apiClient.get(`/user/${userId}/events`);
+      console.log(response.data);
       return response.data;
     } catch (error) {
       console.error('Error fetching user events:', error);

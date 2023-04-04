@@ -12,6 +12,7 @@ const router = createRouter({
     {
       path: '/connexion',
       name: 'connexion',
+      prors: true,
       component: () => import('@/views/ConnexionView.vue')
     },
     {
@@ -25,18 +26,21 @@ const router = createRouter({
       component: () => import('@/views/CreateEventView.vue')
     },
     {
-      path: '/invit',
+      path: '/invit/:id',
       name: 'invit',
+      prors: true,
       component: () => import('@/views/InvitView.vue')
     },
     {
-      path: '/event',
+      path: '/event/:id',
       name: 'event',
+      prors: true,
       component: () => import('@/views/EventView.vue')
     },
     {
-      path: '/profil',
+      path: '/profil/:id',
       name: 'profil',
+      prors: true,
       component: () => import('@/views/ProfilView.vue')
     },
     {

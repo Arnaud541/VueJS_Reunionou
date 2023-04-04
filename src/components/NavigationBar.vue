@@ -9,10 +9,13 @@ const state = reactive({
 });
 
 function logout() {
-    // Code de déconnexion
     if (!confirm('Voulez-vous vraiment vous déconnecter ?')) return;
+    
+    localStorage.removeItem('authToken');
+    
     router.push('/connexion');
 }
+
 
 function isAuthenticated() {
     // Code de connexion
@@ -29,7 +32,7 @@ function isAuthenticated() {
                 </figure>
             </router-link>
 
-            <div class="navbar-item mx-4 px-4">
+            <!-- <div class="navbar-item mx-4 px-4">
                 <div class="title has-text-white">
                     <div v-if="$route.path === '/'">Bienvenue</div>
                     <div v-if="$route.path === '/connexion'">Connectez-vous</div>
@@ -40,7 +43,7 @@ function isAuthenticated() {
                     <div v-if="$route.path === '/profil'">Voici votre profil</div>
                     <div v-if="$route.path === '/participant-inscription'">Vous-êtes nouveau ?</div>
                 </div>
-            </div>
+            </div> -->
 
             <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarMenu"
                @click="state.navbarOpen=!state.navbarOpen">
