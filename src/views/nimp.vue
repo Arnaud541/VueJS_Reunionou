@@ -7,23 +7,6 @@ import {reactive, ref} from 'vue'
 import {useRouter} from 'vue-router';
 
 const router = useRouter();
-  
-let event = reactive({
-    title: '',
-    date: '',
-    desc: '',
-    street: '',
-    city: '',
-    zipcode: ''
-})
-let errors = {
-    title: ref(''),
-    date: ref(''),
-    desc: ref(''),
-    street: ref(''),
-    city: ref(''),
-    zipcode: ref('')
-}
 
 export default {
   computed: {
@@ -132,7 +115,6 @@ export default {
         errors.city.value = "";
         return true;
     }
-  },
 
     checkZipcode() {
     const regExp = /^([A-Z]+[A-Z]?-)?[0-9]{1,2} ?[0-9]{3}$/;
@@ -142,80 +124,5 @@ export default {
     } else {
         errors.zipcode.value = "";
         return true;
-    }}}}
-</script>
-
-<template>
-    <div class="columns is-two-third">
-      <div class="column is-4 is-offset-4">
-            <h1 class="title is-2">Créer un évènement</h1>
-
-            <form class="box" @submit.prevent="validationFormulaire">
-
-                <div class="field" :class="{ 'has-error': !checkTitle() }">
-                    <div class="field">
-                        <label class="label">Titre*</label>
-                        <input class="input" type="text" v-model="event.title" required>
-                    </div>
-                    <p class="help is-danger" v-if="!checkTitle()">Le titre est invalide.</p>
-                </div>
-
-                <div class="field">
-                    <div class="field">
-                        <label class="label">Date*</label>
-                        <input class="input" type="datetime-local" v-model="event.date" required>
-                    </div>
-                    <p class="help is-danger" v-if="!checkTitle()">Le titre est invalide.</p>
-                </div>
-
-                <div class="field" :class="{ 'has-error': !checkDesc() }">
-                    <div class="field">
-                        <label class="label">Description*</label>
-                        <input class="input" type="text" v-model="event.desc" required>
-                    </div>
-                    <p class="help is-danger" v-if="!checkDesc()">La description est invalide.</p>
-                </div>
-
-                <div class="field" :class="{ 'has-error': !checkStreet() }">
-                    <div class="field">
-                        <label class="label">Adresse*</label>
-                        <input class="input" type="text" v-model="event.street" required>
-                    </div>
-                    <p class="help is-danger" v-if="!checkStreet()">L'adresse est invalide.</p>
-                </div>
-
-                <div class="field" :class="{ 'has-error': !checkCity() }">
-                    <div class="field">
-                        <label class="label">Ville*</label>
-                        <input class="input" type="text" v-model="event.city" required>
-                    </div>
-                    <p class="help is-danger" v-if="!checkCity()">La ville est invalide.</p>
-                </div>
-
-                <div class="field" :class="{ 'has-error': !checkZipcode() }">
-                    <div class="field">
-                        <label class="label">Code Postal*</label>
-                        <input class="input" type="text" v-model="event.zipcode" required>
-                    </div>
-                    <p class="help is-danger" v-if="!checkZipcode()">Le code postal est invalide.</p>
-                </div>
-
-                <div class="field">
-                    <div class="control">
-                        <button class="button is-primary">Créer</button>
-                    </div>
-                </div>
-
-            </form>
-            <router-link to="/">Annuler</router-link>
-        </div>
-        <div class="column">
-            <div style="height:500px; width:800px" id="map" ref="map" @click="addMarker"></div>
-            <div id="map" style="position: relative;">
-            </div>
-        </div>
-    </div>
-</template>
-
-<script setup>
-</script>
+    }
+    }
