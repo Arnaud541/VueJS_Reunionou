@@ -3,32 +3,12 @@ import EventService from '@/services/EventService';
 import "leaflet/dist/leaflet.css";
 import { LMap, LTileLayer, LMarker } from "@vue-leaflet/vue-leaflet";
 import L from 'leaflet';
-import {reactive, ref} from 'vue'
-import {useRouter} from 'vue-router';
-
-const router = useRouter();
-  
-let event = reactive({
-    title: '',
-    date: '',
-    desc: '',
-    street: '',
-    city: '',
-    zipcode: ''
-})
-let errors = {
-    title: ref(''),
-    date: ref(''),
-    desc: ref(''),
-    street: ref(''),
-    city: ref(''),
-    zipcode: ref('')
-}
 
 export default {
+
   computed: {
     markerPosition() {
-    if (!this.marker) return { left: 0, top: 0 };
+      if (!this.marker) return { left: 0, top: 0 };
       const markerPos = this.map.latLngToContainerPoint(this.marker.getLatLng());
       const markerWidth = this.marker._icon.clientWidth;
       const markerHeight = this.marker._icon.clientHeight;
@@ -50,6 +30,8 @@ export default {
       }
     });
   },
+
+
   components: {
     LMap,
     LTileLayer,
@@ -71,145 +53,25 @@ export default {
       console.error(error);
     }
   },
-  methods: {
-    async validationFormulaire() {
-      if (this.checkTitle() && this.checkDesc() && this.checkStreet() && this.checkCity() && this.checkZipcode()) {
-        try {
-          const newEvent = {
-            title: event.title,
-            description: event.desc,
-            address: `${event.street}, ${event.city}, ${event.zipcode}`,
-          };
+};
 
-          await EventService.createEvent(newEvent);
-
-          router.push('/invit');
-        } catch (error) {
-          console.error('Error creating the event:', error);
-        }
-      }
-    },
-
-    checkTitle() {
-      const regExp = /^[A-Za-zÀ-ÖØ-öø-ÿ\s'\d]+$/;
-      if (!regExp.test(event.title) && event.title !== "") {
-        errors.title.value = "Le titre est invalide.";
-        return false;
-      } else {
-        errors.title.value = "";
-        return true;
-      }
-    },
-
-    checkDesc() {
-      const regExp = /^[A-Za-zÀ-ÖØ-öø-ÿ\s'\d]+$/;
-      if (!regExp.test(event.desc) && event.desc !== "") {
-        errors.desc.value = "Le description est invalide.";
-        return false;
-      } else {
-        errors.desc.value = "";
-        return true;
-      }
-    },
-
-    checkStreet() {
-      const regExp = /^[A-Za-zÀ-ÖØ-öø-ÿ\s'\d]+$/;
-      if (!regExp.test(event.street) && event.street !== "") {
-        errors.street.value = "L'adresse est invalide.";
-        return false;
-      } else {
-        errors.street.value = "";
-        return true;
-      }
-    },
-
-    checkCity() {
-        const regExp = /^[A-Za-zÀ-ÖØ-öø-ÿ]+(?:[\s-][A-Za-zÀ-ÖØ-öø-ÿ]+)*$/;
-    if (!regExp.test(event.city) && event.city !== "") {
-        errors.city.value = "La ville est invalide.";
-        return false;
-    } else {
-        errors.city.value = "";
-        return true;
-    }
-  },
-
-    checkZipcode() {
-    const regExp = /^([A-Z]+[A-Z]?-)?[0-9]{1,2} ?[0-9]{3}$/;
-    if (!regExp.test(event.zipcode) && event.zipcode !== "") {
-        errors.zipcode.value = "Le code postal est invalide.";
-        return false;
-    } else {
-        errors.zipcode.value = "";
-        return true;
-    }}}}
 </script>
 
 <template>
-    <div class="columns is-two-third">
-      <div class="column is-4 is-offset-4">
-            <h1 class="title is-2">Créer un évènement</h1>
-
-            <form class="box" @submit.prevent="validationFormulaire">
-
-                <div class="field" :class="{ 'has-error': !checkTitle() }">
-                    <div class="field">
-                        <label class="label">Titre*</label>
-                        <input class="input" type="text" v-model="event.title" required>
-                    </div>
-                    <p class="help is-danger" v-if="!checkTitle()">Le titre est invalide.</p>
-                </div>
-
-                <div class="field">
-                    <div class="field">
-                        <label class="label">Date*</label>
-                        <input class="input" type="datetime-local" v-model="event.date" required>
-                    </div>
-                    <p class="help is-danger" v-if="!checkTitle()">Le titre est invalide.</p>
-                </div>
-
-                <div class="field" :class="{ 'has-error': !checkDesc() }">
-                    <div class="field">
-                        <label class="label">Description*</label>
-                        <input class="input" type="text" v-model="event.desc" required>
-                    </div>
-                    <p class="help is-danger" v-if="!checkDesc()">La description est invalide.</p>
-                </div>
-
-                <div class="field" :class="{ 'has-error': !checkStreet() }">
-                    <div class="field">
-                        <label class="label">Adresse*</label>
-                        <input class="input" type="text" v-model="event.street" required>
-                    </div>
-                    <p class="help is-danger" v-if="!checkStreet()">L'adresse est invalide.</p>
-                </div>
-
-                <div class="field" :class="{ 'has-error': !checkCity() }">
-                    <div class="field">
-                        <label class="label">Ville*</label>
-                        <input class="input" type="text" v-model="event.city" required>
-                    </div>
-                    <p class="help is-danger" v-if="!checkCity()">La ville est invalide.</p>
-                </div>
-
-                <div class="field" :class="{ 'has-error': !checkZipcode() }">
-                    <div class="field">
-                        <label class="label">Code Postal*</label>
-                        <input class="input" type="text" v-model="event.zipcode" required>
-                    </div>
-                    <p class="help is-danger" v-if="!checkZipcode()">Le code postal est invalide.</p>
-                </div>
-
-                <div class="field">
-                    <div class="control">
-                        <button class="button is-primary">Créer</button>
-                    </div>
-                </div>
-
-            </form>
-            <router-link to="/">Annuler</router-link>
+    <div class="columns">
+        <div class="column is-2">
+            <div style="position: absolute; left: {{ markerPosition.left }}px; top: {{ markerPosition.top }}px;">
+                <label for="titre">Titre:</label>
+                <input type="text" id="titre" v-model="titre">
+                <br>
+                <label for="date">Date:</label>
+                <input type="text" id="date" v-model="date">
+                <br>
+                <label for="description">Description:</label>
+                <input type="text" id="description" v-model="description">
+            </div>
         </div>
-        <div class="column">
+        <div class="column is-4 is-offset-2">
             <div style="height:500px; width:800px" id="map" ref="map" @click="addMarker"></div>
             <div id="map" style="position: relative;">
             </div>
