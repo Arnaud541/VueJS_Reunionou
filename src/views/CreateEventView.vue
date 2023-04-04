@@ -10,7 +10,9 @@ async function validationFormulaire() {
   if (checkTitle() && checkDesc() && checkStreet() && checkCity() && checkZipcode()) {
     try {
 
-      await EventService.createEvent(event);
+
+    console.log(event);    
+    await EventService.createEvent(event);
 
       router.push('/invit');
     } catch (error) {

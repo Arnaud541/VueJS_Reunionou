@@ -11,15 +11,20 @@ export default {
     }
   },
 
-  async loginUser(credentials) {
+  async loginUser(user) {
     try {
-      const response = await apiClient.post('/login', credentials);
+      const response = await apiClient.post('/login', user);
+      const token = response.data.token;
+      localStorage.setItem('authToken', token);
+      apiClient.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+      console.log(apiClient.defaults.headers.common['Authorization']);
       return response.data;
     } catch (error) {
-      console.error('Error logging in user:', error);
+      console.error('Error logging in the user:', error);
       throw error;
     }
-  },
+},
+
 
   async getUser(userId) {
     try {

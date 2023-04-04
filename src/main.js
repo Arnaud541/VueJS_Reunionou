@@ -11,4 +11,12 @@ const app = createApp(App)
 app.use(createPinia())
 app.use(router)
 
+import apiClient from './api';
+
+const token = localStorage.getItem('authToken');
+if (token) {
+  apiClient.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+}
+
+
 app.mount('#app')
