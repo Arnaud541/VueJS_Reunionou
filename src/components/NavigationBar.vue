@@ -82,7 +82,7 @@ console.log(state.value);
                     <div class="buttons" v-else>
 
 
-                        <router-link to="/profile/${userId.value}" class="button is-primary">
+                        <router-link :to="`/profil/${userId}`" class="button is-primary">
                             <strong>Profil</strong>
                         </router-link>
 

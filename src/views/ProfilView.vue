@@ -8,12 +8,9 @@ const route = useRoute();
 const userEvents = ref([]);
 const userCreatedEvents = ref([]);
 
-const userId = ref(route.params.id);
-
-
 async function fetchUserEvents() {
     try {
-        const events = await UserService.getUserEvents(userId.value);
+        const events = await UserService.getUserEvents(route.params.id);
 
         userEvents.value = events;
     } catch (error) {
@@ -23,7 +20,7 @@ async function fetchUserEvents() {
 
 async function fetchUserCreatedEvents() {
     try {
-        const createdEvents = await UserService.getCreatedEventsByUserId(userId.value);
+        const createdEvents = await UserService.getCreatedEventsByUserId(route.params.id);
 
 
         userCreatedEvents.value = createdEvents;
