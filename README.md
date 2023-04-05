@@ -35,7 +35,7 @@ Liens vers les autres repositories :
 
 ## Documentation
 
-- Flutter ( https://flutter.dev )
+- Vue.JS ( https://vuejs.org )
 
 ## Project Setup
 
