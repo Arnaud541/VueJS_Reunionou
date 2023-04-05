@@ -4,6 +4,7 @@ export default {
   async getEventParticipants(eventId) {
     try {
       const response = await apiClient.get(`/event/${eventId}/participants`);
+      console.log(response);
       return response.data;
     } catch (error) {
       console.error('Error fetching event participants:', error);

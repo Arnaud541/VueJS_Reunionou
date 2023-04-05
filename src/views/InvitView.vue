@@ -1,8 +1,11 @@
 <script setup>
 import {reactive, ref} from 'vue';
-import {useRouter} from 'vue-router';
+import {useRoute} from 'vue-router';
+import EventService from '@/services/EventService'; 
 
-const router = useRouter();
+const route = useRoute();
+
+
 
 let participant = reactive({
     email: ''
@@ -17,10 +20,9 @@ let participants = [];
 function ajouterParticipant() {
     if (participants.email !== "") {
         console.log("Ajout participant");
-        participants.push({email: participant.email});
+        participants.push(participant.email);
         participant.email = '';
         console.log(participants);
-        router.push('/invit');
     }
 }
 
@@ -35,11 +37,29 @@ function checkEmail() {
     }
 }
 
-function validationFormulaire() {
-    console.log("Envoie invitation");
-    participants = [];
-    router.push('/');
+async function validationFormulaire() {
+  if (checkEmail()) {
+    try {
+      const formattedParticipants = { participants: participants };
+
+        console.log(formattedParticipants);
+
+      const createdEvent = await EventService.inviteParticipant(route.params.id, formattedParticipants);
+
+      console.log(createdEvent);
+
+      if (createdEvent && createdEvent.id) {
+        router.push(`/invit/${createdEvent.event.id}`);
+      }
+    } catch (error) {
+      console.error('Error creating the event:', error);
+    }
+  }
 }
+
+
+
+
 </script>
 
 <template>

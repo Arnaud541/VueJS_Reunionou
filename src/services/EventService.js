@@ -41,9 +41,9 @@ export default {
     }
   },
 
-  async inviteParticipant(eventId, participant) {
+  async inviteParticipant(eventId, participants) {
     try {
-      const response = await apiClient.post(`/event/${eventId}/invite`, participant);
+      const response = await apiClient.post(`/event/${eventId}/invite`, participants);
       return response.data;
     } catch (error) {
       console.error('Error inviting participant:', error);
