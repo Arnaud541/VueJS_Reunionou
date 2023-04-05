@@ -1,14 +1,41 @@
-# VueJS_Reunionou
+# Projet VueJS_Reunionou
 
-This template should help get you started developing with Vue 3 in Vite.
+## Participants : Paul Gillon, Andriy Lebedev, Arnaud Bourgoin et Damien Poirot.
+### Front-end fait par Paul, Andriy et Damien.
+Liens vers les autres répositories : 
+- [Api_Reunionou](https://github.com/Arnaud541/API_Reunionou)
+- [FLutter_Reunionou](https://github.com/Arnaud541/Flutter_Reunionou)
 
-## Recommended IDE Setup
+## Fonctionnalités réalisées et auteurs:
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+- Mise en place des routes.
+  - Paul, Andriy et Damien
+- Page de connexion
+  - Damien
+- Création d'évènement par map
+  - Paul
+- Création d'un évènement
+  - Paul et Damien
+- Page d'un évènement
+  - Paul
+- Page d'accueil
+  - Damien et Paul
+- Page d'inscription
+  - Damien
+- Page d'inscription des non-utilisateurs
+  - Damien 
+- Page d'un profil d'utilisateur
+  - Damien
+- Footer et Navigation bar
+  - Damien
+- Mises en places de tous les services
+  - Andriy
+- Connection de toutes les pages avec API (back-end)
+  - Andriy 
 
-## Customize configuration
+## Documentation
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+- Flutter ( https://flutter.dev )
 
 ## Project Setup
 
@@ -28,8 +55,3 @@ npm run dev
 npm run build
 ```
 
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
