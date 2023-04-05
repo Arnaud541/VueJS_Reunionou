@@ -1,7 +1,8 @@
 <script setup>
 import {useRouter} from 'vue-router';
-import {reactive} from "vue";
+import {reactive, computed} from "vue";
 
+console.log(localStorage);
 const router = useRouter();
 
 const state = reactive({
@@ -10,17 +11,15 @@ const state = reactive({
 
 function logout() {
     if (!confirm('Voulez-vous vraiment vous déconnecter ?')) return;
-    
+
     localStorage.removeItem('authToken');
-    
+
     router.push('/connexion');
 }
 
-
-function isAuthenticated() {
-    // Code de connexion
-    router.push('/');
-}
+const isAuthenticated = computed(() => {
+    return localStorage.getItem('authToken') !== null;
+});
 </script>
 
 <template>
@@ -32,7 +31,7 @@ function isAuthenticated() {
                 </figure>
             </router-link>
 
-            <!-- <div class="navbar-item mx-4 px-4">
+            <div class="navbar-item mx-4 px-4">
                 <div class="title has-text-white">
                     <div v-if="$route.path === '/'">Bienvenue</div>
                     <div v-if="$route.path === '/connexion'">Connectez-vous</div>
@@ -43,7 +42,7 @@ function isAuthenticated() {
                     <div v-if="$route.path === '/profil'">Voici votre profil</div>
                     <div v-if="$route.path === '/participant-inscription'">Vous-êtes nouveau ?</div>
                 </div>
-            </div> -->
+            </div>
 
             <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarMenu"
                @click="state.navbarOpen=!state.navbarOpen">
@@ -56,11 +55,20 @@ function isAuthenticated() {
         <div class="navbar-menu">
             <div class="navbar-end">
                 <div class="navbar-item">
-                    <div class="buttons">
 
-                        <router-link to="/profil" class="button is-primary">
+                    <div class="buttons" v-if="isAuthenticated">
+
+                        <!--<router-link :to="{ name: 'profil', params: { id: localStorage.getItem('user.id') }}" class="button is-primary">
                             <strong>Profil</strong>
-                        </router-link>
+                        </router-link>-->
+
+                        <button class="button is-danger" @click="logout">
+                            <strong>Se déconnecter</strong>
+                        </button>
+
+                    </div>
+                    <div class="buttons" v-else>
+
                         <router-link to="/inscription" class="button is-primary">
                             <strong>Inscription</strong>
                         </router-link>
@@ -69,14 +77,12 @@ function isAuthenticated() {
                             Connexion
                         </router-link>
 
-                        <button class="button is-danger" v-if="isAuthenticated" @click="logout">
-                            <strong>Se déconnecter</strong>
-                        </button>
-
                     </div>
+
                 </div>
             </div>
         </div>
 
     </nav>
 </template>
+
