@@ -11,7 +11,7 @@ async function validationFormulaire() {
   if (checkTitle() && checkDesc() && checkStreet() && checkCity() && checkZipcode()) {
     try {
 
-
+    router.push(`/invit/${localStorage.getItem("currentUserId")}`)
     const createdEvent = await EventService.createEvent(event);
 
     console.log(createdEvent);

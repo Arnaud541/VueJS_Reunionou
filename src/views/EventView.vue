@@ -4,6 +4,9 @@ import {useRoute} from 'vue-router';
 import EventService from "@/services/EventService";
 import ParticipantService from "@/services/ParticipantService";
 import CommentsService from "@/services/CommentsService";
+import "leaflet/dist/leaflet.css";
+import { LMap, LTileLayer, LMarker } from "@vue-leaflet/vue-leaflet";
+import L from 'leaflet';
 
 const route = useRoute();
 const eventId = ref(route.params.id);
@@ -152,14 +155,15 @@ onMounted(userIsInvited());
                     </div>
                 </div>
             </div>
-            <div class="column mt-5">
-                <figure>
-                    <img src="/public/assets/img/image.png">
-                </figure>
+                <div id="map" style="height:350px; width:300px" class="column mt-5">
+                    <l-map :zoom="13" :center="[51.505, -0.09]">
+                        <l-tile-layer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"></l-tile-layer>
+                        <l-marker :lat-lng="[51.505, -0.09]"></l-marker>
+                    </l-map>
                 <div v-if="isUserInvited && userStatus.value === 'pending'">
                     <button @click="updateParticipantStatusAccepted()" class="button is-primary is-fullwidth">Accepter</button>
                     <button @click="updateParticipantStatusRefused()" class="button is-danger is-fullwidth">Refuser</button>
-            </div>
+                </div>
                 <div v-else>
                 </div>
             </div>
