@@ -6,7 +6,6 @@ import ParticipantService from "@/services/ParticipantService";
 import CommentsService from "@/services/CommentsService";
 import "leaflet/dist/leaflet.css";
 import { LMap, LTileLayer, LMarker } from "@vue-leaflet/vue-leaflet";
-import L from 'leaflet';
 
 const route = useRoute();
 const eventId = ref(route.params.id);
@@ -78,8 +77,8 @@ async function fetchEventComments() {
 async function fetchEventData() {
     try {
         const event = await EventService.getEvent(eventId.value);
-
         eventData.value = event;
+        console.log(response.data)
     } catch (error) {
         console.log('Error fetching event data', error);
     }
@@ -97,10 +96,10 @@ async function fetchParticipantsOfEvent() {
     }
 }
 
-onMounted(fetchEventData);
-onMounted(fetchParticipantsOfEvent);
-onMounted(fetchEventComments);
-onMounted(userIsInvited);
+onMounted(fetchEventData());
+onMounted(fetchParticipantsOfEvent());
+onMounted(fetchEventComments());
+onMounted(userIsInvited());
 
 </script>
 
