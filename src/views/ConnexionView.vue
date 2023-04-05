@@ -13,10 +13,11 @@ async function validationFormulaire() {
          try {
 
             const currentUser = await UserService.loginUser(user);
-            console.log(currentUser);
+            console.log(user);
 
-            if (currentUser && currentUser.user.id) {
-      router.push(`/profil/${currentUser.user.id}`);
+        if (currentUser && currentUser.user?.id) {
+                localStorage.setItem('currentUserId', JSON.stringify(currentUser.user?.id));
+                router.push(`/profil/${currentUser.user?.id}`);
     } else {
         errorMessage.value = "Wrong email or password. Please try again.";
     }

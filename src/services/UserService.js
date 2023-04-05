@@ -38,7 +38,6 @@ export default {
   async getUserEvents(userId) {
     try {
       const response = await apiClient.get(`/user/${userId}/events`);
-      console.log(response.data);
       return response.data;
     } catch (error) {
       console.error('Error fetching user events:', error);

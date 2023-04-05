@@ -11,33 +11,23 @@ export default {
     }
   },
 
-  async updateParticipantStatus(participantId, status) {
+  async updateParticipantStatus(eventId, userId, status) {
     try {
-      const response = await apiClient.put(`/participant/${participantId}/status`, status);
+      const response = await apiClient.put(`/event/${eventId}/user/${userId}`, status);
       return response.data;
     } catch (error) {
       console.error('Error updating participant status:', error);
       throw error;
     }
   },
-
-  async addComment(eventId, comment) {
+  
+  async isUserInvited(eventId, userId) {
     try {
-      const response = await apiClient.post(`/event/${eventId}/comment`, comment);
+      const response = await apiClient.get(`/invited/${eventId}/${userId}`);
       return response.data;
     } catch (error) {
-      console.error('Error adding comment:', error);
+      console.error('Error checking if user is invited:', error);
       throw error;
     }
-  },
-
-  async getCommentsByEventId(eventId) {
-    try {
-      const response = await apiClient.get(`/event/${eventId}/comments`);
-      return response.data;
-    } catch (error) {
-      console.error('Error fetching comments by event id:', error);
-      throw error;
-    }
-  },
+  }
 };
