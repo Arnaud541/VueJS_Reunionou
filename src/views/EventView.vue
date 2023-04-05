@@ -1,5 +1,5 @@
 <script setup>
-import {ref, onMounted} from 'vue';
+import {ref, onMounted, reactive} from 'vue';
 import {useRoute} from 'vue-router';
 import EventService from "@/services/EventService";
 import ParticipantService from "@/services/ParticipantService";
@@ -10,6 +10,9 @@ const eventId = ref(route.params.id);
 const eventData = ref({});
 const eventParticipants = ref([]);
 const eventComments = ref([]);
+const isUserInvited = ref(false);
+const userId = JSON.parse(localStorage.getItem('currentUserId'));
+const userStatus = ref('pending');
 
 function getStatusColor(status) {
     switch (status) {
@@ -24,12 +27,46 @@ function getStatusColor(status) {
     }
 }
 
+    console.log(route.params.id);
+    console.log(userId);
+
+async function updateParticipantStatusAccepted() {
+    try {
+        const status = await ParticipantService.updateParticipantStatus(route.params.id, userId, 'accepted');
+        userStatus.value = status;
+    } catch (error) {
+        console.log('failed updating the status');
+    }
+}
+
+async function updateParticipantStatusRefused() {
+    try {
+        const status = await ParticipantService.updateParticipantStatus(userId, 'refused');
+        userStatus.status = status;
+    } catch (error) {
+        console.log('failed updating the status');
+    }
+}
+
+
+async function userIsInvited(){
+        try {
+
+            const invited = await ParticipantService.isUserInvited(route.params.id, userId);
+
+            isUserInvited.value = invited;
+
+            console.log(isUserInvited.value?.is_invited);
+        } catch (error) {
+            console.log('Error fetching data', error);
+        }
+}
+
 async function fetchEventComments() {
     try {
         const comments = await CommentsService.getCommentsByEventId(eventId.value);
 
         eventComments.value = comments;
-        console.log(eventComments.value);
     } catch (error) {
         console.log('Error fetching event data', error);
     }
@@ -60,7 +97,7 @@ async function fetchParticipantsOfEvent() {
 onMounted(fetchEventData);
 onMounted(fetchParticipantsOfEvent);
 onMounted(fetchEventComments);
-
+onMounted(userIsInvited);
 
 </script>
 
@@ -88,8 +125,6 @@ onMounted(fetchEventComments);
                                 <li>{{ participant.firstname }} {{ participant.lastname }}</li>
                             </router-link>
                             <button :class="`button is-fullwidth mt-3 ${getStatusColor(participant.status)}`">{{ participant.status }}</button>
-                            <!-- <button class="button is-primary is-fullwidth">Accepter</button>
-                            <button class="button is-danger is-fullwidth">Refuser</button> -->
                             </div>
                         </ul>
                         <div v-if="eventParticipants.length === 0" class="box ml-5 mb-1">
@@ -120,6 +155,12 @@ onMounted(fetchEventComments);
                 <figure>
                     <img src="/public/assets/img/image.png">
                 </figure>
+                <div v-if="isUserInvited && userStatus.value === 'pending'">
+                    <button @click="updateParticipantStatusAccepted()" class="button is-primary is-fullwidth">Accepter</button>
+                    <button @click="updateParticipantStatusRefused()" class="button is-danger is-fullwidth">Refuser</button>
+            </div>
+                <div v-else>
+                </div>
             </div>
         </div>
     </div>

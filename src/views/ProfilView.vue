@@ -13,7 +13,6 @@ const userId = ref(route.params.id);
 
 async function fetchUserEvents() {
     try {
-
         const events = await UserService.getUserEvents(userId.value);
 
         userEvents.value = events;
@@ -23,7 +22,6 @@ async function fetchUserEvents() {
 }
 
 async function fetchUserCreatedEvents() {
-    console.log(userId.value);
     try {
         const createdEvents = await UserService.getCreatedEventsByUserId(userId.value);
 
