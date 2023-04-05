@@ -1,25 +1,37 @@
 <script setup>
 import {useRouter} from 'vue-router';
-import {reactive, computed} from "vue";
+import {ref, onMounted} from "vue";
 
-console.log(localStorage);
 const router = useRouter();
 
-const state = reactive({
-    navbarOpen: false
-});
+const state = ref(false);
+const userId = ref({})
 
 function logout() {
     if (!confirm('Voulez-vous vraiment vous déconnecter ?')) return;
 
     localStorage.removeItem('authToken');
+    localStorage.removeItem('currentUserId');
 
     router.push('/connexion');
 }
 
-const isAuthenticated = computed(() => {
-    return localStorage.getItem('authToken') !== null;
-});
+function navBarState() {
+    if (!localStorage.getItem('currentUserId')){
+        state.value = false;
+    } else {
+        console.log(localStorage.getItem('currentUserId'))
+        state.value = true;
+        userId.value = localStorage.getItem('currentUserId')
+    }
+}
+
+
+onMounted(navBarState());
+
+console.log(state.value);
+
+
 </script>
 
 <template>
@@ -56,18 +68,7 @@ const isAuthenticated = computed(() => {
             <div class="navbar-end">
                 <div class="navbar-item">
 
-                    <div class="buttons" v-if="isAuthenticated">
-
-                        <!--<router-link :to="{ name: 'profil', params: { id: localStorage.getItem('user.id') }}" class="button is-primary">
-                            <strong>Profil</strong>
-                        </router-link>-->
-
-                        <button class="button is-danger" @click="logout">
-                            <strong>Se déconnecter</strong>
-                        </button>
-
-                    </div>
-                    <div class="buttons" v-else>
+                    <div class="buttons" v-if="!state">
 
                         <router-link to="/inscription" class="button is-primary">
                             <strong>Inscription</strong>
@@ -76,6 +77,19 @@ const isAuthenticated = computed(() => {
                         <router-link to="/connexion" class="button is-light">
                             Connexion
                         </router-link>
+
+                    </div>
+                    <div class="buttons" v-else>
+
+
+                        <router-link to="/profile/${userId.value}" class="button is-primary">
+                            <strong>Profil</strong>
+                        </router-link>
+
+
+                        <button class="button is-danger" @click="logout">
+                            <strong>Se déconnecter</strong>
+                        </button>
 
                     </div>
 
