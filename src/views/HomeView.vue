@@ -7,14 +7,6 @@ export default {
       events: [],
     };
   },
-  async created() {
-    try {
-      const response = await EventService.getAllEvents();
-      this.events = response.data.events;
-    } catch (error) {
-      console.error(error);
-    }
-  },
 };
 
 </script>
