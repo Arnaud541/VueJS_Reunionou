@@ -9,7 +9,7 @@ async function validationFormulaire(){
 if (checkFirstname() && checkLastname() && checkEmail() && checkPassword()) {
      try {
 
-        await UserService.register(user);
+        await UserService.registerUser(user);
 
         router.push('/');
     } catch (error) {
