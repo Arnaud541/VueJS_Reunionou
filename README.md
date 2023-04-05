@@ -43,6 +43,12 @@ Liens vers les autres répositories :
 npm install
 ```
 
+#### and
+
+```sh
+npm update
+```
+
 ### Compile and Hot-Reload for Development
 
 ```sh
