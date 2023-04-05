@@ -1,20 +1,35 @@
 <script setup>
 import {useRouter} from 'vue-router';
-import {reactive} from "vue";
+import {ref, onMounted} from "vue";
 
 const router = useRouter();
 
-const state = reactive({
-    navbarOpen: false
-});
+const state = ref(false);
+const userId = ref({})
 
 function logout() {
     if (!confirm('Voulez-vous vraiment vous déconnecter ?')) return;
-    
+
     localStorage.removeItem('authToken');
-    
+    localStorage.removeItem('currentUserId');
+
     router.push('/connexion');
 }
+
+function navBarState() {
+    if (!localStorage.getItem('currentUserId')){
+        state.value = false;
+    } else {
+        console.log(localStorage.getItem('currentUserId'))
+        state.value = true;
+        userId.value = localStorage.getItem('currentUserId')
+    }
+}
+
+
+onMounted(navBarState());
+
+console.log(state.value);
 
 
 </script>
@@ -28,7 +43,7 @@ function logout() {
                 </figure>
             </router-link>
 
-            <!-- <div class="navbar-item mx-4 px-4">
+            <div class="navbar-item mx-4 px-4">
                 <div class="title has-text-white">
                     <div v-if="$route.path === '/'">Bienvenue</div>
                     <div v-if="$route.path === '/connexion'">Connectez-vous</div>
@@ -39,7 +54,7 @@ function logout() {
                     <div v-if="$route.path === '/profil'">Voici votre profil</div>
                     <div v-if="$route.path === '/participant-inscription'">Vous-êtes nouveau ?</div>
                 </div>
-            </div> -->
+            </div>
 
             <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarMenu"
                @click="state.navbarOpen=!state.navbarOpen">
@@ -52,11 +67,9 @@ function logout() {
         <div class="navbar-menu">
             <div class="navbar-end">
                 <div class="navbar-item">
-                    <div class="buttons">
 
-                        <router-link to="/profil" class="button is-primary">
-                            <strong>Profil</strong>
-                        </router-link>
+                    <div class="buttons" v-if="!state">
+
                         <router-link to="/inscription" class="button is-primary">
                             <strong>Inscription</strong>
                         </router-link>
@@ -65,14 +78,25 @@ function logout() {
                             Connexion
                         </router-link>
 
-                        <button class="button is-danger" v-if="isAuthenticated" @click="logout">
+                    </div>
+                    <div class="buttons" v-else>
+
+
+                        <router-link to="/profile/${userId.value}" class="button is-primary">
+                            <strong>Profil</strong>
+                        </router-link>
+
+
+                        <button class="button is-danger" @click="logout">
                             <strong>Se déconnecter</strong>
                         </button>
 
                     </div>
+
                 </div>
             </div>
         </div>
 
     </nav>
 </template>
+
