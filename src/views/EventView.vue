@@ -1,5 +1,5 @@
 <script setup>
-import {ref, onMounted, reactive} from 'vue';
+import {ref, onMounted} from 'vue';
 import {useRoute} from 'vue-router';
 import EventService from "@/services/EventService";
 import ParticipantService from "@/services/ParticipantService";
@@ -16,6 +16,7 @@ const isUserInvited = ref(false);
 const userId = JSON.parse(localStorage.getItem('currentUserId'));
 const userStatus = ref('pending');
 
+
 function getStatusColor(status) {
     switch (status) {
         case 'pending':
@@ -28,9 +29,6 @@ function getStatusColor(status) {
             return '';
     }
 }
-
-    console.log(route.params.id);
-    console.log(userId);
 
 async function updateParticipantStatusAccepted() {
     try {
@@ -58,7 +56,8 @@ async function userIsInvited(){
 
             isUserInvited.value = invited;
 
-            console.log(isUserInvited.value?.is_invited);
+            console.log(isUserInvited);
+
         } catch (error) {
             console.log('Error fetching data', error);
         }
@@ -66,7 +65,8 @@ async function userIsInvited(){
 
 async function fetchEventComments() {
     try {
-        const comments = await CommentsService.getCommentsByEventId(eventId.value);
+
+        const comments = await CommentsService.getCommentsByEventId(route.params.id);
 
         eventComments.value = comments;
     } catch (error) {
@@ -76,7 +76,8 @@ async function fetchEventComments() {
 
 async function fetchEventData() {
     try {
-        const event = await EventService.getEvent(eventId.value);
+        const event = await EventService.getEvent(route.params.id);
+
         eventData.value = event;
         console.log(response.data)
     } catch (error) {
@@ -86,7 +87,8 @@ async function fetchEventData() {
 
 async function fetchParticipantsOfEvent() {
     try {
-        const participants = await ParticipantService.getEventParticipants(eventId.value);
+
+        const participants = await ParticipantService.getEventParticipants(route.params.id);
 
         eventParticipants.value = participants;
 

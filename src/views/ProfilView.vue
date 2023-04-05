@@ -32,8 +32,8 @@ async function fetchUserCreatedEvents() {
     }
 }
 
-onMounted(fetchUserEvents);
-onMounted(fetchUserCreatedEvents);
+onMounted(fetchUserEvents());
+onMounted(fetchUserCreatedEvents());
 
 </script>
 
