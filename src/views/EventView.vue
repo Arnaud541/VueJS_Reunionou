@@ -4,9 +4,6 @@ import {useRoute} from 'vue-router';
 import EventService from "@/services/EventService";
 import ParticipantService from "@/services/ParticipantService";
 import CommentsService from "@/services/CommentsService";
-import "leaflet/dist/leaflet.css";
-import { LMap, LTileLayer, LMarker } from "@vue-leaflet/vue-leaflet";
-import L from 'leaflet';
 
 const route = useRoute();
 const eventId = ref(route.params.id);
@@ -80,7 +77,6 @@ async function fetchEventData() {
         const event = await EventService.getEvent(route.params.id);
 
         eventData.value = event;
-        console.log(response.data)
     } catch (error) {
         console.log('Error fetching event data', error);
     }
