@@ -14,8 +14,10 @@ async function validationFormulaire() {
 
     const createdEvent = await EventService.createEvent(event);
 
-    if (createdEvent && createdEvent.id) {
-      router.push(`/invit/${createdEvent.id}`);
+    console.log(createdEvent);
+
+    if (createdEvent && createdEvent.event.id) {
+      router.push(`/invit/${createdEvent.event.id}`);
     } else {
         errorMessage.value = "Error creating the event. Please try again.";
     }
