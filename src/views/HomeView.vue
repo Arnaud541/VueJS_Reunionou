@@ -13,9 +13,19 @@
                         <router-link to="/createEvent" class="button is-primary">Créer un évènement</router-link>
                     </div>
                 </div>
+                <div class="field mt-2">
+                    <div class="control">
+                        <router-link to="/createEventMap" class="button is-primary">Créer un évènement avec la carte</router-link>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+    <div v-for="event in events" :key="event.id" class="mt-4">
+          <h3>{{ event.title }}</h3>
+          <p>{{ event.description }}</p>
+          <!-- Display other event information here -->
+        </div>
 </template>
 
 <script setup>

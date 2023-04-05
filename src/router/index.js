@@ -10,6 +10,11 @@ const router = createRouter({
       component: HomeView
     },
     {
+      path: '/createEventMap',
+      name: 'createEventMap',
+      component: () => import('@/views/CreateEventMapView.vue')
+    },
+    {
       path: '/connexion',
       name: 'connexion',
       prors: true,
