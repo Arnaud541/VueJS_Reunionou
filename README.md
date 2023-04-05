@@ -2,7 +2,7 @@
 
 ## Participants : Paul Gillon, Andriy Lebedev, Arnaud Bourgoin et Damien Poirot.
 ### Front-end fait par Paul, Andriy et Damien.
-Liens vers les autres répositories : 
+Liens vers les autres repositories : 
 - [API_Reunionou](https://github.com/Arnaud541/API_Reunionou)
 - [FLutter_Reunionou](https://github.com/Arnaud541/Flutter_Reunionou)
 
