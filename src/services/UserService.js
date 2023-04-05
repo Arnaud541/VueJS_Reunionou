@@ -45,6 +45,26 @@ export default {
     }
   },
 
+  async getUserLiveEvents(userId) {
+    try {
+      const response = await apiClient.get(`/user/${userId}/live-events`);
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching user events:', error);
+      throw error;
+    }
+  },
+
+  async getUserPastEvents(userId) {
+    try {
+      const response = await apiClient.get(`/user/${userId}/past-events`);
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching user events:', error);
+      throw error;
+    }
+  },
+
   async getCreatedEventsByUserId(userId) {
     try {
       const response = await apiClient.get(`/user/${userId}/events/created`);

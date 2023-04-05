@@ -17,10 +17,6 @@ function logout() {
 }
 
 
-function isAuthenticated() {
-    // Code de connexion
-    router.push('/');
-}
 </script>
 
 <template>
